@@ -1,4 +1,4 @@
-# Web-devoloper
+![image](https://github.com/user-attachments/assets/61d6a4e4-d8a5-4708-9ddf-86c4495a5a96)# Web-devoloper
 ## 1
 ![image](https://github.com/user-attachments/assets/fef633cf-191c-4c81-a5e9-bbb069ae62f1)
 ### Mở rộng nâng cao:
@@ -101,6 +101,37 @@
 ![image](https://github.com/user-attachments/assets/821994c9-2a4a-4cc2-a803-46a724002b4e)
 ![image](https://github.com/user-attachments/assets/597c6edf-209b-4d28-aac0-889bc82feddc)
 ![image](https://github.com/user-attachments/assets/983cd1eb-8d0e-461a-bcd6-df5f3fb5e132)
+## 12
+![image](https://github.com/user-attachments/assets/02b90aa2-5afb-43bc-8fe1-d0401ce3deee)
+![image](https://github.com/user-attachments/assets/6b39d960-4bfd-416b-b48e-39076bdba55c)
+### Tối ưu, cải tiến, mở rộng nâng cao:
+![image](https://github.com/user-attachments/assets/029d1bc6-78b4-4c3e-8f0b-b1c4fb4e7945)
+![image](https://github.com/user-attachments/assets/74d61e01-b37f-45ea-8586-9a1aa5280139)
+![image](https://github.com/user-attachments/assets/0f11c84c-a862-4044-84c9-6d2f2c965dee)
+![image](https://github.com/user-attachments/assets/d7d5e350-8d62-4559-933c-f11386be73a9)
+## 13
+### Tối ưu, cải tiến, mở rộng nâng cao:
+![image](https://github.com/user-attachments/assets/6737a4ec-da47-4b38-8fba-718a2ef18607)
+![image](https://github.com/user-attachments/assets/9368902c-3d4a-4604-a214-25a09506f063)
+![image](https://github.com/user-attachments/assets/22c0d958-8c62-403e-ad86-813cb3f7616c)
+## 14
+![image](https://github.com/user-attachments/assets/76083494-b503-429a-b3e3-a78232744897)
+![image](https://github.com/user-attachments/assets/a878bcf6-45bc-4efb-83aa-f2e6d97a959d)
+![image](https://github.com/user-attachments/assets/6fbc3d7e-2a74-45e4-8348-8f3a782f171c)
+![image](https://github.com/user-attachments/assets/e6f7d0a3-e952-41a7-82ba-8159fd25a53d)
+![image](https://github.com/user-attachments/assets/9bd8f95c-f043-4c43-81eb-bbe1b84dbd58)
+![image](https://github.com/user-attachments/assets/bf5c28a6-d706-43b2-8b7d-8e30356b4e24)
+![image](https://github.com/user-attachments/assets/1e0eaacb-819d-487a-93c7-d10a71e751ba)
+![image](https://github.com/user-attachments/assets/cfbc1166-7356-44fa-8bfa-6c1b7794b9d9)
+![image](https://github.com/user-attachments/assets/841ca0a2-b96b-46bb-9435-0df20fa68eab)
+![image](https://github.com/user-attachments/assets/eaed551d-72e8-4680-9862-327ff49f5a6a)
+### Tối ưu, cải tiến, mở rộng nâng cao:
+![image](https://github.com/user-attachments/assets/a7c55983-fa62-43d6-bb90-b265211484d9)
+![image](https://github.com/user-attachments/assets/eda2d4f4-d423-41f5-8ec5-b1a899db73bf)
+![image](https://github.com/user-attachments/assets/052b6be8-d6b6-494a-b09f-e29307720cf1)
+![image](https://github.com/user-attachments/assets/c0efb176-63b6-4d2c-ad66-c8a77a05c16d)
+
+
 
 ## 👨‍💻 Author
 Trần Thế Hảo
