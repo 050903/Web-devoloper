@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo form và các điều khiển</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, #f0fff0, #ccffcc);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            max-width: 650px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 10px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #00c853;
+            outline: none;
+        }
+
+        fieldset {
+            border: 1px solid #f44336;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #fff8f8;
+        }
+
+        legend {
+            color: #d32f2f;
+            font-style: italic;
+            padding: 0 10px;
+        }
+
+        .btn {
+            background-color: #009688;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #00796b;
+        }
+
+        #thongbao {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #ff6f00;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            input[type="text"],
+            textarea,
+            select {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Đăng ký du lịch</h2>
+        <form id="formDangKy" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td>Họ và tên</td>
+                    <td><input type="text" id="hoten" placeholder="Nhập họ tên đầy đủ" value=""></td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ</td>
+                    <td><input type="text" id="diachi" placeholder="Nhập địa chỉ liên hệ" value=""></td>
+                </tr>
+                <tr>
+                    <td>Điện thoại</td>
+                    <td><input type="text" id="dienthoai" placeholder="VD: 0909123456" value=""></td>
+                </tr>
+                <tr>
+                    <td>Khách Việt Nam</td>
+                    <td><input type="checkbox" id="vnkhach" checked></td>
+                </tr>
+                <tr>
+                    <td>Chọn tour</td>
+                    <td>
+                        <select id="tour">
+                            <optgroup label="Miền Bắc">
+                                <option>Hà Nội - Hạ Long - Sapa</option>
+                                <option>Hà Nội - Chùa Hương - Ninh Bình</option>
+                                <option>Hà Nội - Cát Bà - Tuần Châu</option>
+                            </optgroup>
+                            <optgroup label="Miền Trung">
+                                <option>Huế - Bạch Mã - Đà Nẵng</option>
+                                <option>Buôn Mê Thuột - Gia Lai - Kontum</option>
+                                <option>Nha Trang - Đà Lạt</option>
+                            </optgroup>
+                            <optgroup label="Miền Nam">
+                                <option>TP.HCM - Cần Thơ - Cà Mau</option>
+                                <option>TP.HCM - Mỹ Tho</option>
+                            </optgroup>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phương tiện</td>
+                    <td>
+                        <input type="radio" name="pt" checked> Máy bay
+                        <input type="radio" name="pt"> Xe ô tô
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <fieldset>
+                            <legend>Số lượng đoàn khách</legend>
+                            Người lớn <input type="text" size="3" value="6">
+                            &nbsp;&nbsp;&nbsp;
+                            Trẻ em <input type="text" size="3" value="4">
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ghi chú thêm</td>
+                    <td>
+                        <textarea rows="3" placeholder="Ghi chú về chế độ ăn, trẻ nhỏ,...">Có 2 trẻ em dưới 6 tuổi
+Có 2 người ăn chay</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <button type="submit" class="btn">Đồng ý</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div id="thongbao"></div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const hoten = document.getElementById("hoten").value.trim();
+            const diachi = document.getElementById("diachi").value.trim();
+            const dienthoai = document.getElementById("dienthoai").value.trim();
+
+            if (!hoten || !diachi || !dienthoai) {
+                alert("Vui lòng điền đầy đủ thông tin họ tên, địa chỉ và điện thoại.");
+                return false;
+            }
+
+            document.getElementById("thongbao").innerText = "✅ Bạn đã đăng ký thành công!";
+            return false; // Ngăn submit thực tế (nếu không có backend)
+        }
+    </script>
+</body>
+</html>

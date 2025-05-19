@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Định dạng văn bản</title>
+    <style>
+        :root {
+            --primary-color: #008000;
+            --text-color: #333;
+            --code-bg: #CCCCCC;
+            --code-color: #0000CC;
+            --border-color: #999;
+            --hover-color: #f5f5f5;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 600px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .section:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .formula {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        
+        .math-formula {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        
+        .code {
+            margin: 15px 0;
+        }
+        
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-color);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        
+        .additional-info {
+            display: none;
+            background-color: #f5f8ff;
+            padding: 10px;
+            border-left: 4px solid #0066cc;
+            margin-top: 10px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .info-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .info-button:hover {
+            background-color: #006600;
+        }
+        
+        .formula-examples {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        /* Toggle switch for dark mode */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .dark-mode {
+            background-color: #222;
+            color: #f0f0f0;
+        }
+        
+        .dark-mode .container {
+            background-color: #333;
+            border-color: #444;
+        }
+        
+        .dark-mode .section:hover {
+            background-color: #444;
+        }
+        
+        .dark-mode pre {
+            background-color: #555;
+            color: #00ccff;
+        }
+        
+        .dark-mode .additional-info {
+            background-color: #444;
+            border-left-color: #00ccff;
+        }
+        
+        .dark-mode th {
+            background-color: #444;
+            color: #f0f0f0;
+        }
+        
+        .dark-mode table, .dark-mode th, .dark-mode td {
+            border-color: #555;
+        }
+        
+        @media (max-width: 650px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            
+            .theme-switch {
+                position: static;
+                margin-bottom: 15px;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switch">
+        <span>Chế độ tối</span>
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="container">
+        <h2>Định dạng văn bản</h2>
+
+        <div class="section">
+            <div class="formula">
+                <b>Hóa học:</b> Nước: H<sub>2</sub>O; <i>Axit Sulfuric</i>: H<sub>2</sub>SO<sub>4</sub>
+                <button class="info-button" onclick="toggleInfo('chemistry-info')">Xem thêm</button>
+                
+                <div id="chemistry-info" class="additional-info">
+                    <h4>Các công thức hóa học phổ biến:</h4>
+                    <ul>
+                        <li>Natri hydroxit: NaOH</li>
+                        <li>Axit clohidric: HCl</li>
+                        <li>Canxi cacbonat: CaCO<sub>3</sub></li>
+                        <li>Natri Clorua: NaCl</li>
+                    </ul>
+                    
+                    <h4>Phản ứng hóa học:</h4>
+                    <div class="formula-examples">
+                        <p>H<sub>2</sub>SO<sub>4</sub> + 2NaOH → Na<sub>2</sub>SO<sub>4</sub> + 2H<sub>2</sub>O</p>
+                        <p>CaCO<sub>3</sub> + 2HCl → CaCl<sub>2</sub> + H<sub>2</sub>O + CO<sub>2</sub>↑</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="math-formula">
+                <b>Toán học:</b> Phương trình bậc 2: ax<sup>2</sup> + bx + c = 0
+                <button class="info-button" onclick="toggleInfo('math-info')">Xem thêm</button>
+                
+                <div id="math-info" class="additional-info">
+                    <h4>Công thức nghiệm phương trình bậc 2:</h4>
+                    <p>x = (-b ± √(b<sup>2</sup> - 4ac)) / 2a</p>
+                    
+                    <h4>Ví dụ:</h4>
+                    <div class="formula-examples">
+                        <p>Giải phương trình: 2x<sup>2</sup> + 5x - 3 = 0</p>
+                        <p>a = 2, b = 5, c = -3</p>
+                        <p>Δ = b<sup>2</sup> - 4ac = 5<sup>2</sup> - 4×2×(-3) = 25 + 24 = 49</p>
+                        <p>x<sub>1</sub> = (-5 + √49) / (2×2) = (-5 + 7) / 4 = 0.5</p>
+                        <p>x<sub>2</sub> = (-5 - √49) / (2×2) = (-5 - 7) / 4 = -3</p>
+                    </div>
+                    
+                    <h4>Đặc biệt:</h4>
+                    <p>- Nếu Δ > 0: Phương trình có 2 nghiệm phân biệt</p>
+                    <p>- Nếu Δ = 0: Phương trình có nghiệm kép x = -b/(2a)</p>
+                    <p>- Nếu Δ < 0: Phương trình vô nghiệm</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="code">
+                <b>Tin học:</b> Vòng lặp For
+                <button class="info-button" onclick="toggleInfo('code-info')">Xem thêm</button>
+                
+                <pre>
+For i = 0 To 10
+    Tong = Tong + i 
+Next</pre>
+                
+                <div id="code-info" class="additional-info">
+                    <h4>Các ví dụ với ngôn ngữ khác:</h4>
+                    
+                    <p><strong>JavaScript:</strong></p>
+                    <pre>
+let tong = 0;
+for (let i = 0; i <= 10; i++) {
+    tong += i;
+}
+console.log(tong); // Kết quả: 55</pre>
+                    
+                    <p><strong>Python:</strong></p>
+                    <pre>
+tong = 0
+for i in range(11):
+    tong += i
+print(tong)  # Kết quả: 55</pre>
+                    
+                    <p><strong>C++:</strong></p>
+                    <pre>
+int tong = 0;
+for (int i = 0; i <= 10; i++) {
+    tong += i;
+}
+cout << tong; // Kết quả: 55</pre>
+                    
+                    <h4>Kết quả thực hiện vòng lặp:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Giá trị i</th>
+                                <th>Phép tính</th>
+                                <th>Giá trị Tong</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>0 + 0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0 + 1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>1 + 2</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>3 + 3</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>6 + 4</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>10 + 5</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>15 + 6</td>
+                                <td>21</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>21 + 7</td>
+                                <td>28</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>28 + 8</td>
+                                <td>36</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>36 + 9</td>
+                                <td>45</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>45 + 10</td>
+                                <td>55</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>Công thức tính tổng của n số tự nhiên đầu tiên:</h4>
+                    <p>Tổng = n(n+1)/2</p>
+                    <p>Với n = 10: Tổng = 10(10+1)/2 = 10×11/2 = 55</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chuyển đổi chế độ tối/sáng
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+        
+        // Hiển thị/ẩn thông tin bổ sung
+        function toggleInfo(id) {
+            const infoElement = document.getElementById(id);
+            if (infoElement.style.display === 'block') {
+                infoElement.style.display = 'none';
+            } else {
+                infoElement.style.display = 'block';
+            }
+        }
+        
+        // Tính tổng dãy số từ 0 đến 10
+        function calculateSum() {
+            let tong = 0;
+            for (let i = 0; i <= 10; i++) {
+                tong += i;
+            }
+            return tong;
+        }
+        
+        // Thêm sự kiện cho nút xem thêm
+        document.addEventListener('DOMContentLoaded', function() {
+            // Xác định chiều cao của màn hình để tối ưu trải nghiệm cuộn
+            const viewportHeight = window.innerHeight;
+            const container = document.querySelector('.container');
+            if (container.offsetHeight > viewportHeight) {
+                container.style.marginBottom = '20px';
+            }
+        });
+    </script>
+</body>
+</html>

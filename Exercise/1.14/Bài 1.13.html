@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo form và các điều khiển</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            margin: auto;
+            border-spacing: 10px;
+        }
+        
+        fieldset {
+            border: 1px solid red;
+            width: 350px;
+            height: 55px;
+        }
+        legend {
+            font-style: italic;
+            color: red;
+        }
+        #thongbao {
+            text-align: center;
+            color: orange;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: rgb(202, 255, 166);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function hienThongBao() {
+            document.getElementById("thongbao").innerText = "Bạn đã đăng ký thành công!!!";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+    <h2 style="text-align:center; color:navy">Đăng ký du lịch</h2>
+    <form>
+        <table>
+            <tr>
+                <td>Họ và tên</td>
+                <td><input type="text" id="hoten" size="30" value="Phạm Ngọc Cẩm Đào"></td>
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+                <td><input type="text" id="diachi" size="30" value="227 Nguyễn Văn Cừ"></td>
+            </tr>
+            <tr>
+                <td>Điện thoại</td>
+                <td><input type="text" id="dienthoai" size="15" value="8351056"></td>
+            </tr>
+            <tr>
+                <td>Khách Việt Nam</td>
+                <td><input type="checkbox" id="vnkhach" checked></td>
+            </tr>
+            <tr>
+                <td>Chọn tour</td>
+                <td>
+                    <select id="tour">
+                        <optgroup label="Miền Bắc">
+                            <option>Hà Nội - Hạ Long - Sapa</option>
+                            <option>Hà Nội - Chùa Hương - Ninh Bình</option>
+                            <option>Hà Nội - Cát Bà - Tuần Châu</option>
+                        </optgroup>
+                        <optgroup label="Miền Trung">
+                            <option>Huế - Bạch Mã - Đà Nẵng</option>
+                            <option>Buôn mê thuột - Gia lai - Kontum</option>
+                            <option>Nha Trang - Đà Lạt</option>
+                        </optgroup>
+                        <optgroup label="Miền Nam">
+                            <option>TP.HCM - Cần Thơ - Cà Mau</option>
+                            <option>TP.HCM - Mỹ Tho</option>
+                        </optgroup>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Phương tiện</td>
+                <td>
+                    <input type="radio" name="pt" checked> Máy bay
+                    <input type="radio" name="pt"> Xe ô tô
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <fieldset>
+                        <legend align="center">Số lượng đoàn khách</legend>
+                        Người lớn <input type="text" size="3" value="6">
+                        Trẻ em <input type="text" size="3" value="4">
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>Ghi chú thêm</td>
+                <td><textarea id="ghichu" style="width:300px;" rows="3">Có 2 trẻ em dưới 6 tuổi
+Có 2 người ăn chay</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input type="button" value="Đồng ý" onclick="hienThongBao()">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div id="thongbao"></div>
+</div>
+
+</body>
+</html>

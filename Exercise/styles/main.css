@@ -1,0 +1,17 @@
+:root {
+    --primary-red: #e63946;
+    --light-red: #ffcad4;
+    --dark-red: #d90429;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --dark-gray: #212529;
+}
+
+/* ... (giữ nguyên các style cơ bản khác) ... */
+
+/* Thêm style cho active link */
+nav ul li a.active {
+    color: var(--primary-red);
+    font-weight: bold;
+    border-bottom: 2px solid var(--primary-red);
+}

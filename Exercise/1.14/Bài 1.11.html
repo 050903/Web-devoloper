@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo form và các điều khiển trên form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        td {
+            padding: 8px;
+        }
+        
+        input[type="text"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+        
+        .output-label {
+            margin-top: 15px;
+            padding: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Đăng nhập</h2>
+        <form id="loginForm">
+            <table>
+                <tr>
+                    <td><label for="username">Mã người dùng:</label></td>
+                    <td><input type="text" id="username" value="phnhung"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Mật khẩu:</label></td>
+                    <td><input type="password" id="password" placeholder=". . . . . . . ."></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" id="submitBtn" value="Đồng ý" onclick="handleLogin()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div id="outputLabel" class="output-label"></div>
+    </div>
+
+    <script>
+        function handleLogin() {
+            // Lấy giá trị từ ô Mã người dùng
+            const username = document.getElementById('username').value;
+            
+            // Hiển thị giá trị lên nhãn
+            document.getElementById('outputLabel').innerText = username;
+        }
+    </script>
+</body>
+</html>

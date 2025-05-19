@@ -1,0 +1,137 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: #0073e6;
+    color: white;
+}
+
+.tagline {
+    font-size: 18px;
+    color: #ffcc00;
+}
+
+header {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #0073e6;
+    border-radius: 5px;
+}
+
+.hero-image {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hero-image:hover {
+    transform: scale(1.05);
+}
+
+.first-paragraph {
+    text-align: justify;
+    margin: 20px;
+}
+
+.first-letter {
+    font-size: 2em;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+    color: #0073e6;
+}
+
+.highlight-line {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+    color: #0073e6;
+}
+
+.highlight-shanghai {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff6600;
+}
+
+.last-paragraph {
+    text-align: justify;
+    margin: 20px;
+    font-style: italic;
+}
+
+.highlight {
+    color: #0073e6;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-links li {
+    margin: 0 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ffcc00;
+}

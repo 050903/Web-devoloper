@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phiếu Đăng Ký Khuyến Mãi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .error {
+      color: #ef4444; /* Tailwind's text-red-500 */
+      font-size: 0.875rem; /* Tailwind's text-sm */
+      margin-top: 0.25rem; /* Tailwind's mt-1 */
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="container mx-auto p-4 max-w-2xl">
+    <h3 class="text-2xl font-bold text-center mb-6 text-gray-800">Phiếu Đăng Ký Tham Gia Chương Trình Khuyến Mãi</h3>
+
+    <form id="registrationForm" class="bg-white rounded-lg shadow-lg p-6">
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2" for="hoten">Họ và tên</label>
+        <input type="text" id="hoten" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập họ và tên">
+        <div id="hoten-error" class="error"></div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2" for="diachi">Địa chỉ</label>
+        <input type="text" id="diachi" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập địa chỉ">
+        <div id="diachi-error" class="error"></div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2" for="dienthoai">Điện thoại</label>
+        <input type="tel" id="dienthoai" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập số điện thoại">
+        <div id="dienthoai-error" class="error"></div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">Phái</label>
+        <div class="flex gap-4">
+          <label><input type="radio" name="phai" value="Nam" checked class="mr-1"> Nam</label>
+          <label><input type="radio" name="phai" value="Nữ" class="mr-1"> Nữ</label>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2" for="nghenghiep">Nghề nghiệp</label>
+        <select id="nghenghiep" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="Bác sĩ">Bác sĩ</option>
+          <option value="Kỹ sư">Kỹ sư</option>
+          <option value="Giáo viên" selected>Giáo viên</option>
+          <option value="Khác">Khác</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2" for="sanpham">Chọn sản phẩm tham gia</label>
+        <select id="sanpham" multiple size="4" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="Kem đánh răng" selected>Kem đánh răng</option>
+          <option value="Bột giặt">Bột giặt</option>
+          <option value="Dầu gội đầu" selected>Dầu gội đầu</option>
+          <option value="Sữa tắm">Sữa tắm</option>
+        </select>
+        <div id="sanpham-error" class="error"></div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2" for="songuoi">Số người dự đoán tham gia</label>
+        <input type="number" id="songuoi" value="250000" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div id="songuoi-error" class="error"></div>
+      </div>
+
+      <div class="text-center">
+        <button type="button" onclick="xuLyDangKy()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition duration-300">Đồng ý</button>
+      </div>
+
+      <div id="thongbao" class="text-center mt-4 text-green-600 font-bold"></div>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      let isValid = true;
+      const hoten = document.getElementById("hoten").value.trim();
+      const diachi = document.getElementById("diachi").value.trim();
+      const dienthoai = document.getElementById("dienthoai").value.trim();
+      const sanpham = document.getElementById("sanpham").selectedOptions;
+      const songuoi = document.getElementById("songuoi").value;
+
+      // Reset error messages
+      document.getElementById("hoten-error").innerText = "";
+      document.getElementById("diachi-error").innerText = "";
+      document.getElementById("dienthoai-error").innerText = "";
+      document.getElementById("sanpham-error").innerText = "";
+      document.getElementById("songuoi-error").innerText = "";
+
+      // Validation
+      if (!hoten) {
+        document.getElementById("hoten-error").innerText = "Vui lòng nhập họ và tên";
+        isValid = false;
+      }
+      if (!diachi) {
+        document.getElementById("diachi-error").innerText = "Vui lòng nhập địa chỉ";
+        isValid = false;
+      }
+      if (!dienthoai || !/^\d{10,11}$/.test(dienthoai)) {
+        document.getElementById("dienthoai-error").innerText = "Số điện thoại phải có 10-11 chữ số";
+        isValid = false;
+      }
+      if (sanpham.length === 0) {
+        document.getElementById("sanpham-error").innerText = "Vui lòng chọn ít nhất một sản phẩm";
+        isValid = false;
+      }
+      if (!songuoi || songuoi < 0) {
+        document.getElementById("songuoi-error").innerText = "Số người phải là số không âm";
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    function xuLyDangKy() {
+      const thongbao = document.getElementById("thongbao");
+      thongbao.innerText = "";
+
+      if (validateForm()) {
+        const formData = {
+          hoten: document.getElementById("hoten").value,
+          diachi: document.getElementById("diachi").value,
+          dienthoai: document.getElementById("dienthoai").value,
+          phai: document.querySelector('input[name="phai"]:checked').value,
+          nghenghiep: document.getElementById("nghenghiep").value,
+          sanpham: Array.from(document.getElementById("sanpham").selectedOptions).map(opt => opt.value),
+          songuoi: document.getElementById("songuoi").value,
+          timestamp: new Date().toISOString()
+        };
+
+        // Save to localStorage
+        let registrations = JSON.parse(localStorage.getItem("registrations") || "[]");
+        registrations.push(formData);
+        localStorage.setItem("registrations", JSON.stringify(registrations));
+
+        // Show success message with animation
+        thongbao.classList.add("fade-in");
+        thongbao.innerText = "Đăng ký thành công! Cảm ơn bạn đã tham gia!";
+        
+        // Reset form
+        document.getElementById("registrationForm").reset();
+        
+        // Remove animation class after animation completes
+        setTimeout(() => thongbao.classList.remove("fade-in"), 500);
+      }
+    }
+
+    // Load saved data if exists
+    window.onload = () => {
+      const savedData = JSON.parse(localStorage.getItem("registrations") || "[]");
+      if (savedData.length > 0) {
+        document.getElementById("thongbao").innerText = `Có ${savedData.length} lượt đăng ký đã được lưu`;
+      }
+    };
+  </script>
+</body>
+</html>

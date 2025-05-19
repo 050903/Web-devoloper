@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chương trình học - Ngành lập trình</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      font-size: 14px;
+      margin: 20px;
+      background-color: white;
+      color: black;
+    }
+    body.dark {
+      background-color: #121212;
+      color: #eee;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: center;
+    }
+    th.sortable:hover {
+      cursor: pointer;
+      background-color: #ccc;
+    }
+    .accordion {
+      background-color: #f2f2f2;
+      color: #000;
+      cursor: pointer;
+      padding: 10px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .accordion.dark {
+      background-color: #333;
+      color: #fff;
+    }
+    .panel {
+      display: none;
+      overflow: hidden;
+    }
+    .btn-container {
+      margin: 20px 0;
+    }
+    button {
+      margin-right: 10px;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chương trình học - Ngành lập trình</h1>
+
+  <div class="btn-container">
+    <button onclick="toggleMode()">Chuyển chế độ sáng/tối</button>
+    <button onclick="exportTableToExcel()">Export Excel</button>
+    <button onclick="exportToPDF()">Export PDF</button>
+  </div>
+
+  <button class="accordion">I - Tin học văn phòng</button>
+  <div class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">Môn học</th>
+          <th colspan="2">Số tiết</th>
+        </tr>
+        <tr>
+          <th class="sortable" onclick="sortTable(this, 1)">Lý thuyết</th>
+          <th class="sortable" onclick="sortTable(this, 2)">Thực hành</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Hệ điều hành Windows</td><td>3</td><td>5</td></tr>
+        <tr><td>Sử dụng Internet</td><td>3</td><td>5</td></tr>
+        <tr><td>Soạn thảo văn bản với MS Word</td><td>24</td><td>40</td></tr>
+        <tr><td>Tạo bài thuyết trình với MS PowerPoint</td><td>9</td><td>15</td></tr>
+        <tr><td>Xử lý số liệu với MS Excel</td><td>24</td><td>40</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="accordion">II - Kỹ thuật lập trình (VB.NET)</button>
+  <div class="panel">
+    <table>
+      <tbody>
+        <tr><td>Tạo trang web với MS FrontPage</td><td>9</td><td>15</td></tr>
+        <tr><td>Nhập môn lập trình</td><td>36</td><td>60</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="accordion">Kỹ thuật lập trình</button>
+  <div class="panel">
+    <table>
+      <tbody>
+        <tr><td>Kỹ thuật lập trình</td><td>36</td><td>60</td></tr>
+        <tr><td>Nhập môn lập trình</td><td>36</td><td>60</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    // Toggle Accordion
+    document.querySelectorAll('.accordion').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        this.classList.toggle('active');
+        this.nextElementSibling.style.display =
+          this.nextElementSibling.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Toggle Dark/Light Mode
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      document.querySelectorAll('.accordion').forEach(btn => btn.classList.toggle('dark'));
+    }
+
+    // Sort Table Columns
+    function sortTable(header, colIndex) {
+      const table = header.closest('table');
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const sorted = rows.sort((a, b) => {
+        return parseFloat(a.cells[colIndex].innerText) - parseFloat(b.cells[colIndex].innerText);
+      });
+      sorted.forEach(row => tbody.appendChild(row));
+    }
+
+    // Export to Excel
+    function exportTableToExcel() {
+      const tables = document.querySelectorAll('table');
+      const wb = XLSX.utils.book_new();
+      tables.forEach((table, index) => {
+        const ws = XLSX.utils.table_to_sheet(table);
+        XLSX.utils.book_append_sheet(wb, ws, `Bảng ${index + 1}`);
+      });
+      XLSX.writeFile(wb, 'chuong_trinh_hoc.xlsx');
+    }
+
+    // Export to PDF
+    async function exportToPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      let y = 10;
+      document.querySelectorAll('table').forEach(table => {
+        doc.text('Chương trình học', 10, y);
+        y += 5;
+        Array.from(table.rows).forEach(row => {
+          let rowText = Array.from(row.cells).map(cell => cell.innerText).join(' | ');
+          doc.text(rowText, 10, y);
+          y += 5;
+        });
+        y += 5;
+      });
+      doc.save('chuong_trinh_hoc.pdf');
+    }
+  </script>
+</body>
+</html>

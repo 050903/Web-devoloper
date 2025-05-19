@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tạo form và các điều khiển</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f1fff1;
+    }
+    table {
+      border-collapse: collapse;
+      background-color: #e6ffe6;
+      padding: 10px;
+    }
+    td {
+      padding: 8px;
+    }
+    .success-message {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h3>Phiếu đăng ký tham gia chương trình khuyến mãi</h3>
+
+  <form id="registrationForm">
+    <table>
+      <tr>
+        <td>Họ và tên</td>
+        <td><input type="text" id="hoten" size="30"></td>
+      </tr>
+      <tr>
+        <td>Địa chỉ</td>
+        <td><input type="text" id="diachi" size="30"></td>
+      </tr>
+      <tr>
+        <td>Điện thoại</td>
+        <td><input type="text" id="dienthoai" size="30"></td>
+      </tr>
+      <tr>
+        <td>Phái</td>
+        <td>
+          <input type="radio" name="phai" id="nam" value="Nam" checked> Nam
+          <input type="radio" name="phai" id="nu" value="Nữ"> Nữ
+        </td>
+      </tr>
+      <tr>
+        <td>Nghề nghiệp</td>
+        <td>
+          <select id="nghenghiep">
+            <option value="Bác sĩ">Bác sĩ</option>
+            <option value="Kỹ sư">Kỹ sư</option>
+            <option value="Giáo viên" selected>Giáo viên</option>
+            <option value="Khác">Khác</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Chọn sản phẩm tham gia</td>
+        <td>
+          <select id="sanpham" multiple size="4">
+            <option value="Kem đánh răng" selected>Kem đánh răng</option>
+            <option value="Bột giặt">Bột giặt</option>
+            <option value="Dầu gội đầu" selected>Dầu gội đầu</option>
+            <option value="Sữa tắm">Sữa tắm</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Số người dự đoán tham gia</td>
+        <td><input type="text" id="songuoi" value="250000" size="30"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="button" value="Đồng ý" onclick="xuLyDangKy()"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div id="thongbao" class="success-message"></div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    function xuLyDangKy() {
+      document.getElementById("thongbao").innerText = "Bạn đã đăng ký thành công!!!";
+    }
+  </script>
+
+</body>
+</html>

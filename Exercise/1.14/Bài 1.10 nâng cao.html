@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khuyến Mãi Double Rich - Nhận Quà Hấp Dẫn</title>
+    <style>
+        /* Biến màu sắc */
+        :root {
+            --primary-red: #e63946;
+            --light-red: #ffcad4;
+            --dark-red: #d90429;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #212529;
+        }
+        
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-red);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-red);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero-content {
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* Button */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Các phần nội dung */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-red);
+            font-size: 2.5rem;
+        }
+        
+        /* Phần khuyến mãi */
+        .promo-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .promo-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .promo-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .promo-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .promo-card ul {
+            list-style-position: inside;
+            margin-bottom: 1rem;
+        }
+        
+        .promo-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Phần đăng ký */
+        #register {
+            background-color: var(--light-red);
+        }
+        
+        .register-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+        }
+        
+        /* Phần liên hệ */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">DOUBLE RICH</div>
+                <nav>
+                    <ul>
+                        <li><a href="#promotion">Khuyến mãi</a></li>
+                        <li><a href="#products">Sản phẩm</a></li>
+                        <li><a href="#how-to">Nhận quà</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Tỏa sáng cùng DOUBLE RICH</h1>
+            <p>Công nghệ dầu gội dưỡng tóc mới</p>
+            <a href="#register" class="btn">Đăng ký ngay</a>
+        </div>
+    </section>
+
+    <!-- Khuyến mãi Section -->
+    <section id="promotion" class="section">
+        <div class="container">
+            <h2 class="section-title">Chương trình khuyến mãi</h2>
+            <div class="promo-cards">
+                <div class="promo-card">
+                    <h3><i class="fas fa-gift"></i> Sản phẩm khuyến mãi</h3>
+                    <ul>
+                        <li>Dầu gội Double Rich mới 200ml</li>
+                        <li>Dầu gội Double Rich mới 400ml</li>
+                        <li>Tất cả sản phẩm có tem khuyến mãi</li>
+                    </ul>
+                </div>
+                
+                <div class="promo-card">
+                    <h3><i class="fas fa-users"></i> Đối tượng tham gia</h3>
+                    <ul>
+                        <li>Áp dụng cho người tiêu dùng cuối cùng</li>
+                        <li>Không áp dụng cho nhân viên, nhà phân phối</li>
+                        <li>Không áp dụng cho đại lý bán lẻ</li>
+                    </ul>
+                </div>
+                
+                <div class="promo-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Thời gian áp dụng</h3>
+                    <ul>
+                        <li>Từ ngày 15/06/2023</li>
+                        <li>Đến ngày 15/08/2023</li>
+                        <li>Áp dụng trên toàn quốc</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cách nhận quà Section -->
+    <section id="how-to" class="section" style="background-color: #f5f5f5;">
+        <div class="container">
+            <h2 class="section-title">Cách thức nhận quà</h2>
+            <div class="promo-cards">
+                <div class="promo-card">
+                    <h3><i class="fas fa-store"></i> Nhận quà tại cửa hàng</h3>
+                    <ol>
+                        <li>Mua sản phẩm có tem khuyến mãi</li>
+                        <li>Giữ lại hóa đơn mua hàng</li>
+                        <li>Mang sản phẩm và hóa đơn đến cửa hàng</li>
+                        <li>Nhận quà tặng trực tiếp</li>
+                    </ol>
+                </div>
+                
+                <div class="promo-card">
+                    <h3><i class="fas fa-truck"></i> Nhận quà qua bưu điện</h3>
+                    <ol>
+                        <li>Cắt mã vạch trên sản phẩm</li>
+                        <li>Điền thông tin vào phiếu dự thưởng</li>
+                        <li>Gửi về địa chỉ công ty</li>
+                        <li>Chờ xác nhận và nhận quà qua bưu điện</li>
+                    </ol>
+                </div>
+                
+                <div class="promo-card">
+                    <h3><i class="fas fa-award"></i> Giải thưởng</h3>
+                    <ul>
+                        <li>Giải đặc biệt: Chuyến du lịch Bali</li>
+                        <li>Giải nhất: Máy lọc không khí</li>
+                        <li>Giải nhì: Bộ dầu gội cao cấp</li>
+                        <li>Giải khuyến khích: Voucher mua hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Đăng ký Section -->
+    <section id="register" class="section">
+        <div class="container">
+            <h2 class="section-title">Đăng ký tham gia</h2>
+            <div class="register-form">
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product">Sản phẩm đã mua</label>
+                        <select id="product" name="product" required>
+                            <option value="">Chọn sản phẩm</option>
+                            <option value="200ml">Double Rich 200ml</option>
+                            <option value="400ml">Double Rich 400ml</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="code">Mã sản phẩm (nếu có)</label>
+                        <input type="text" id="code" name="code">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Lời nhắn</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Gửi đăng ký</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Liên hệ Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Liên hệ với chúng tôi</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Địa chỉ</h3>
+                    <p>123 Đường ABC, Quận 1, TP.HCM</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Điện thoại</h3>
+                    <p>1900 1234</p>
+                    <p>(028) 1234 5678</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@doublerich.com</p>
+                    <p>support@doublerich.com</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Giờ làm việc</h3>
+                    <p>Thứ 2 - Thứ 6: 8h - 17h</p>
+                    <p>Thứ 7: 8h - 12h</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 DOUBLE RICH. Tất cả các quyền được bảo lưu.</p>
+            <div style="margin-top: 1rem;">
+                <a href="#" style="color: var(--white); margin: 0 10px;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" style="color: var(--white); margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color: var(--white); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: var(--white); margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Form submission
+            const form = document.getElementById('registration-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Cảm ơn bạn đã đăng ký tham gia chương trình! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.');
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập NGÔN NGỮ HTML</title>
+    <style>
+        .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        pointer-events: none;
+        opacity: 0;
+        animation: confetti-fall 2s ease-in-out forwards;
+        z-index: 9999;
+    }
+
+    @keyframes confetti-fall {
+        0% {
+            transform: translateY(-100vh) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 25%;
+            background: #ffffff;
+            padding: 1rem;
+            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .content {
+            width: 75%;
+            padding: 1rem;
+            position: relative;
+            background: #ffffff;
+        }
+
+        iframe {
+            border: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .sidebar, .content {
+                width: 100%;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Bài tập Ngôn ngữ HTML</h1>
+    </header>
+
+    <div class="main-container">
+        <nav class="sidebar">
+            <iframe src="Thucdon.html" name="menu" style="width: 100%; height: 100%;"></iframe>
+        </nav>
+        
+        <main class="content">
+            <div class="loading"></div>
+            <iframe src="Bai 1.01.html" name="noidung" style="width: 100%; height: 100%;"></iframe>
+        </main>
+    </div>
+
+    <script>
+        // Handle responsive iframe resizing
+        function resizeIframes() {
+            const iframes = document.querySelectorAll('iframe');
+            const height = window.innerHeight - 80;
+            iframes.forEach(iframe => {
+                iframe.style.height = `${height}px`;
+            });
+        }
+
+        window.addEventListener('resize', resizeIframes);
+        window.addEventListener('load', resizeIframes);
+
+        // Handle iframe loading animation
+        const contentFrame = document.querySelector('iframe[name="noidung"]');
+        const loader = document.querySelector('.loading');
+
+        contentFrame.addEventListener('loadstart', () => {
+            loader.style.display = 'block';
+            contentFrame.style.opacity = '0';
+        });
+
+        contentFrame.addEventListener('load', () => {
+            loader.style.display = 'none';
+            contentFrame.style.opacity = '1';
+        });
+        function createConfetti() {
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 2000);
+        }
+    }
+
+    contentFrame.addEventListener('load', () => {
+        loader.style.display = 'none';
+        contentFrame.style.opacity = '1';
+        createConfetti();
+    });
+
+        // Handle search functionality
+        const searchInput = document.getElementById('searchInput');
+        const menuList = document.getElementById('menuList');
+
+        searchInput.addEventListener('input', () => {
+            const filter = searchInput.value.toLowerCase();
+            const items = menuList.getElementsByTagName('li');
+
+            for (let item of items) {
+                const linkText = item.textContent || item.innerText;
+                item.style.display = linkText.toLowerCase().includes(filter) ? '' : 'none';
+            }
+        });
+    
+        // Handle accordion functionality
+        const accordionButtons = document.querySelectorAll('.accordion');
+        accordionButtons.forEach(button =>
+        {
+            button.addEventListener('click', () =>
+            {
+                const accordionContent = button.nextElementSibling;
+                if (accordionContent.style.display === 'block') {
+                    accordionContent.style.display = 'none';
+                } else {
+                    accordionContent.style.display = 'block';
+                }
+                });
+        });
+        // Handle dark/light mode toggle
+        const toggleButton = document.getElementById('toggleMode');
+        toggleButton.addEventListener('click', () =>
+        {
+            const body = document.body;
+            const isDarkMode = body.classList.contains('dark-mode');
+            body.classList.toggle('dark-mode', !isDarkMode);
+            body.style.backgroundColor = isDarkMode ? '#f0f2f5' : '#333';
+            body.style.color = isDarkMode ? '#000' : '#fff';
+            });
+        // Handle table sorting
+        const tableHeaders = document.querySelectorAll('th');
+        tableHeaders.forEach(header =>
+        {
+            header.addEventListener('click', () =>
+            {
+                const table = header.parentNode.parentNode;
+                const rows = table.querySelectorAll('tr');
+                rows.forEach(row =>
+                {
+                    const cells = row.querySelectorAll('td');
+                    const cellArray = Array.from(cells);
+                    const sortedArray = cellArray.sort((a, b) =>
+                    {
+                        const aText = a.textContent || a.innerText;
+                        const bText = b.textContent || b.innerText;
+                        return aText.localeCompare(bText);
+                    });
+                    cellArray.forEach((cell, index) =>
+                    {
+                        row.appendChild(cell);
+                    });
+                });
+            });
+        });
+
+        // Handle export to Excel
+        const exportButton = document.getElementById('export-to-excel');
+        exportButton.addEventListener('click', () =>
+        {
+            const table = document.getElementById('table');
+            const csvContent = `data:text/csv;charset=utf-8,${table.rows[0].
+            cells.map(cell =>
+            cell.textContent).join(',')}\n${Array.from(table.rows)
+            .slice(1)
+            .map(row =>
+            Array.from(row.cells)
+            .map(cell =>
+            cell.textContent)
+            .join(','))}.join('\n')}`;
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'table.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Handle export to PDF
+        const pdfButton = document.getElementById('export-to-pdf');
+        pdfButton.addEventListener('click', () =>
+        {
+            const table = document.getElementById('table');
+            const pdf = new jsPDF();
+            const rows = table.querySelectorAll('tr');
+            const header = table.querySelector('tr');
+            const headerCells = header.querySelectorAll('th');
+            const headerText = Array.from(headerCells).map(cell =>
+            cell.textContent);
+            pdf.text(headerText.join(' '), 10, 10);
+            rows.forEach((row, index) =>
+            {
+                const rowCells = row.querySelectorAll('td');
+                const rowText = Array.from(rowCells).map(cell =>
+                cell.textContent);
+                pdf.text(rowText.join(' '), 10, 20 + (index * 10));
+                });
+            pdf.save('table.pdf');
+        });
+    </script>
+</body>
+</html>
